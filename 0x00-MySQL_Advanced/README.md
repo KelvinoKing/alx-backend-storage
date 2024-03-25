@@ -1,4 +1,3 @@
-```markdown
 # MySQL Advanced
 
 This repository contains solutions to MySQL advanced tasks aimed at enhancing skills in database management, optimization, and scripting. The tasks cover various aspects such as creating tables with constraints, optimizing queries with indexes, implementing stored procedures, functions, views, and triggers in MySQL.
@@ -90,18 +89,3 @@ The tasks are organized in the `0x00-MySQL_Advanced` directory. Each task includ
 ## Setup
 
 To run the scripts, ensure you have MySQL installed on your Ubuntu 18.04 LTS system. You can use a container-on-demand to run MySQL. Connect via SSH or use the WebTerminal provided.
-
-1. Start MySQL service:
-   ```
-   $ service mysql start
-   ```
-
-2. Import a SQL dump:
-   ```
-   $ echo "CREATE DATABASE hbtn_0d_tvshows;" | mysql -uroot -p
-   $ curl "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql" -s | mysql -uroot -p hbtn_0d_tvshows
-   ```
-
-3. Execute SQL scripts:
-   ```
-   $ cat
