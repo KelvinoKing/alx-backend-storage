@@ -9,7 +9,7 @@ data in Redis using the random key and return the key.
 """
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable
 
 
 class Cache:
@@ -23,10 +23,35 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb(True)
 
-    def store(self, data:Union[str, bytes, int, float]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Store method
         """
         data_key = str(uuid.uuid4())
         self._redis.set(data_key, data)
         return data_key
+
+    def get(
+            self,
+            key: str,
+            fn: Callable = None,
+            ) -> Union[str, bytes, int, float]:
+        """
+        Get method
+        """
+        data = self._redis.get(key)
+        if fn:
+            return fn(data)
+        return data
+
+    def get_str(self, key: str) -> str:
+        """
+        Get string method
+        """
+        return self.get(key, str)
+
+    def get_int(self, key: str) -> int:
+        """
+        Get int method
+        """
+        return self.get(key, int)
