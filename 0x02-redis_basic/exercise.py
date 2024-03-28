@@ -10,6 +10,22 @@ data in Redis using the random key and return the key.
 import redis
 import uuid
 from typing import Union, Callable
+from functools import wraps
+
+
+def count_call(method: Callable) -> Callable:
+    """
+    Count call decorator
+    """
+    @wraps(method)
+    def invoker(self, *args, **kwargs) -> any:
+        """
+        invoke method
+        """
+        if isinstance(self._redis, redis.Redis):
+            self._redis.incr(method.__qualname__)
+        return method(self, *args, **kwargs)
+    return invoker
 
 
 class Cache:
