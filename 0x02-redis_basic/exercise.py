@@ -9,6 +9,7 @@ data in Redis using the random key and return the key.
 """
 import redis
 import uuid
+from typing import Union
 
 
 class Cache:
@@ -22,7 +23,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb(True)
 
-    def store(self, data):
+    def store(self, data:Union[str, bytes, int, float]) -> str:
         """
         Store method
         """
